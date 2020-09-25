@@ -124,7 +124,7 @@ export default class HTMLImage extends PureComponent {
     }
 
     get errorImage () {
-		// Если это эмоджи, то выводим его alt в бордере
+		// if it's emoji, print inside the border
         return (
 			this.props.source['uri'] && this.props['source']['uri'].indexOf('/emoticons/') && this.props['alt'] ? 
 				<View style={{ width: 50, height: 50, borderWidth: 1, borderColor: 'lightgray', overflow: 'hidden', justifyContent: 'center' }}>
