@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Image, View, Text } from 'react-native';
+import { Image, View, Text, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class HTMLImage extends PureComponent {
@@ -16,7 +16,7 @@ export default class HTMLImage extends PureComponent {
         alt: PropTypes.string,
         height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+        style: Image.propTypes.style,
         imagesMaxWidth: PropTypes.number,
         imagesInitialDimensions: PropTypes.shape({
             width: PropTypes.number,
@@ -32,8 +32,8 @@ export default class HTMLImage extends PureComponent {
     }
 
     componentDidMount () {
-        this.mounted = true;
         this.getImageSize();
+        this.mounted = true;
     }
 
     componentWillUnmount () {
@@ -41,7 +41,7 @@ export default class HTMLImage extends PureComponent {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        this.getImageSize(this.props);
+		this.getImageSize(this.props);
     }
 
     getDimensionsFromStyle (style, height, width) {
@@ -53,7 +53,8 @@ export default class HTMLImage extends PureComponent {
         }
         if (width) {
             styleWidth = width;
-        }
+		}
+		
         if (Array.isArray(style)) {
             style.forEach((styles) => {
                 if (!width && styles['width']) {
@@ -70,14 +71,14 @@ export default class HTMLImage extends PureComponent {
             if (!height && style['height']) {
                 styleHeight = style['height'];
             }
-        }
+		}
 
         return { styleWidth, styleHeight };
     }
 
     getImageSize (props = this.props) {
         const { source, imagesMaxWidth, style, height, width } = props;
-        const { styleWidth, styleHeight } = this.getDimensionsFromStyle(style, height, width);
+		const { styleWidth, styleHeight } = this.getDimensionsFromStyle(style, height, width);
 
         if (styleWidth && styleHeight) {
             return this.mounted && this.setState({
@@ -85,7 +86,7 @@ export default class HTMLImage extends PureComponent {
                 height: typeof styleHeight === 'string' && styleHeight.search('%') !== -1 ? styleHeight : parseInt(styleHeight, 10)
             });
         }
-        // Fetch image dimensions only if they aren't supplied or if with or height is missing
+		// Fetch image dimensions only if they aren't supplied or if with or height is missing
         Image.getSize(
             source.uri,
             (originalWidth, originalHeight) => {
@@ -103,26 +104,41 @@ export default class HTMLImage extends PureComponent {
     }
 
     validImage (source, style, props = {}) {
-        return (
-            <Image
-              source={source}
-              style={[style, { width: this.state.width, height: this.state.height, resizeMode: 'cover' }]}
-              {...props}
-            />
-        );
+		if (source['uri'].indexOf('emoticons') !== -1) {
+			return (
+				<Image
+					source={source}
+					style={[style, { width: 50, height: 40, resizeMode: 'contain'}]}
+					{...props}
+				/>
+			);
+		} else {
+			return (
+				<Image
+					source={source}
+					style={[style, {width: this.state.width, height: this.state.height, resizeMode: 'cover', alignSelf: 'center'}]}
+					{...props}
+				/>
+			);
+		}
     }
 
     get errorImage () {
+		// Если это эмоджи, то выводим его alt в бордере
         return (
-            <View style={{ width: 50, height: 50, borderWidth: 1, borderColor: 'lightgray', overflow: 'hidden', justifyContent: 'center' }}>
-                { this.props.alt ? <Text style={{ textAlign: 'center', fontStyle: 'italic' }}>{ this.props.alt }</Text> : false }
-            </View>
+			this.props.source['uri'] && this.props['source']['uri'].indexOf('/emoticons/') && this.props['alt'] ? 
+				<View style={{ width: 50, height: 50, borderWidth: 1, borderColor: 'lightgray', overflow: 'hidden', justifyContent: 'center' }}>
+					{ this.props.alt ? <Text style={{ textAlign: 'center', fontStyle: 'italic' }}>{ this.props.alt }</Text> : false }
+				</View> : 
+				<Image
+					style={{ width: '90%', height: 150, alignSelf: 'center'}}
+					source={require('../../../client/img/NoImage-placeholder.png')}
+				/>
         );
     }
 
     render () {
-        const { source, style, passProps } = this.props;
-
-        return !this.state.error ? this.validImage(source, style, passProps) : this.errorImage;
+		const { source, style, passProps } = this.props;
+        return !(!!this.state.error) ? this.validImage(source, style, passProps) : this.errorImage;
     }
 }

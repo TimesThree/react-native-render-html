@@ -1,35 +1,22 @@
+# react-native-render-html
 
-[![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?colorB=191A17)](#)
-[![npm](https://img.shields.io/npm/v/react-native-render-html/latest)](https://www.npmjs.com/package/react-native-render-html)
-[![](https://img.shields.io/npm/v/react-native-render-html/next)](#)
-[![](https://img.shields.io/badge/semver-2.0.0-e10079.svg)](https://semver.org/spec/v2.0.0.html)
-[![](https://img.shields.io/codecov/c/gh/archriss/react-native-render-html)](https://codecov.io/gh/archriss/react-native-render-html)
-[![](https://github.com/archriss/react-native-render-html/workflows/CI/badge.svg?branch=master)](https://github.com/archriss/react-native-render-html/actions?query=branch%3Amaster+workflow%3ACI)
-[![npm](https://img.shields.io/npm/dm/react-native-render-html.svg?colorB=007ec6)](https://www.npmjs.com/package/react-native-render-html)
-[![github issues](https://img.shields.io/github/issues/archriss/react-native-render-html.svg)](https://github.com/archriss/react-native-render-html/issues)
-[![github closed issues](https://img.shields.io/github/issues-closed/archriss/react-native-render-html.svg?colorB=44cc11)](https://github.com/archriss/react-native-render-html/issues?q=is%3Aissue+is%3Aclosed)
-[![](https://img.shields.io/discord/736906960041148476?label=discord)](https://discord.gg/dbEMMJM)
-
-<br>
-<p align="center">
-    <a href="#"><img width="124" height="124" src="assets/logo-100x100.svg"></a>
-</p>
-<h1 align="center">react-native-render-html</h1>
-<p align="center">
-  <sup>Based on the original work of <a href="https://github.com/Thomas101">Thomas Beverley</a>, props to him.</sup>
-</p>
-<p align="center">
 An iOS/Android pure javascript react-native component that renders your HTML into 100% native views. It's made to be extremely customizable and easy to use and aims at being able to render anything you throw at it.
-</p>
-<p align="center">
-    <a href="#"><img src="http://i.giphy.com/26tkmjBLvThP0TSak.gif"></a>
-</p>
+
+> Based on the original work of [Thomas Beverley](https://github.com/Thomas101), props to him.
+
+![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square&colorB=191A17)
+[![npm](https://img.shields.io/npm/v/react-native-render-html.svg?style=flat-square)](https://www.npmjs.com/package/react-native-render-html)
+[![npm](https://img.shields.io/npm/dm/react-native-render-html.svg?style=flat-square&colorB=007ec6)](https://www.npmjs.com/package/react-native-render-html)
+<!-- [![github release](https://img.shields.io/github/release/archriss/react-native-render-html.svg?style=flat-square)](https://github.com/archriss/react-native-render-html/releases) -->
+[![github issues](https://img.shields.io/github/issues/archriss/react-native-render-html.svg?style=flat-square)](https://github.com/archriss/react-native-render-html/issues)
+[![github closed issues](https://img.shields.io/github/issues-closed/archriss/react-native-render-html.svg?style=flat-square&colorB=44cc11)](https://github.com/archriss/react-native-render-html/issues?q=is%3Aissue+is%3Aclosed)
+
+![react-native-render-html](http://i.giphy.com/26tkmjBLvThP0TSak.gif)
 
 ## Table of contents
 
 - [react-native-render-html](#react-native-render-html)
   - [Table of contents](#table-of-contents)
-  - [Versions](#versions)
   - [Install](#install)
   - [Basic usage](#basic-usage)
   - [Props](#props)
@@ -47,67 +34,19 @@ An iOS/Android pure javascript react-native component that renders your HTML int
     - [onParsed](#onparsed)
   - [Ignoring HTML content](#ignoring-html-content)
   - [Useful functions](#useful-functions)
-  - [Help](#help)
-
-## Versions
-
-> :warning: **You are on the master branch which is home for the latest development.**
-> Check the table bellow to get documentation for your exact
-> version. Because the patch version is irrelevant regarding the features of one
-> version, we will point to the last patch release of a minor version. You can
-> read our full branching policy in the
-> [MAINTAINING.adoc](MAINTAINING.adoc#branching) file.
-
-> :warning: We indulged ourselves when releasing **4.2.0** regarding
-> **Semantic Versioning**, because we introduced `react-native-webview` as a peer
-> dependency. As a result, you need to install it yourself. Please follow [the
-> plugin's
-> instructions](https://github.com/react-native-community/react-native-webview/blob/master/docs/Getting-Started.md).
-> We have since deliberately [committed to Semantic
-> Versioning](MAINTAINING.adoc#semantic-versioning).
-
-### Stable releases
-
-| Minor | Branch                                                                                  | Documentation                                                                                            | Test Status                                                                                            | Latest                                                                         |
-| ----- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| 4.2   |  [release/4.2](https://github.com/archriss/react-native-render-html/tree/release/4.2)   | [release/4.2/README.md](https://github.com/archriss/react-native-render-html/blob/release/4.2/README.md) | ![CI](https://github.com/archriss/react-native-render-html/workflows/CI/badge.svg?branch=release%2F4.2) | [![npm](https://img.shields.io/npm/v/react-native-render-html/release/4.2)](#) |
-| 4.1   |  [release/4.1](https://github.com/archriss/react-native-render-html/tree/release/4.1)   | [release/4.1/README.md](https://github.com/archriss/react-native-render-html/blob/release/4.1/README.md) | ![CI](https://github.com/archriss/react-native-render-html/workflows/CI/badge.svg?branch=release%2F4.1) | [![npm](https://img.shields.io/npm/v/react-native-render-html/release/4.1)](#) |
-| 4.0   |  [release/4.0](https://github.com/archriss/react-native-render-html/tree/release/4.0)   | [release/4.0/README.md](https://github.com/archriss/react-native-render-html/blob/release/4.0/README.md) | ![CI](https://github.com/archriss/react-native-render-html/workflows/CI/badge.svg?branch=release%2F4.0) | [![npm](https://img.shields.io/npm/v/react-native-render-html/release/4.0)](#) |
-
-<a name="prereleases"></a>
-
-### Pre-releases
-
-| Tag      | Branch      | Test Status                                                                                              | Latest                                                                   |
-| -------- | ----------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| next     | [dev/4.x]() | [![CI](https://github.com/archriss/react-native-render-html/workflows/CI/badge.svg?branch=dev%2f4.x)](#) | [![](https://img.shields.io/npm/v/react-native-render-html/next)](#)     |
-| unstable | [master]()  | [![CI](https://github.com/archriss/react-native-render-html/workflows/CI/badge.svg?branch=master)](#)    | [![](https://img.shields.io/npm/v/react-native-render-html/unstable)](#) |
 
 ## Install
 
-```bash
-npm install react-native-render-html
-```
+`npm install react-native-render-html --save` or `yarn add react-native-render-html`
 
-> :city_sunrise: To try out pre-releases up-to-date with development, including many fixes, you are
-> encouraged to install the `next` tag versions. With our (new) test-first
-> approach, the fixes and features in this branch will have been tested, so the
-> chances you encounter a bug is pretty low. If you encounter any issue on a
-> pre-release, you don't need to fill a full bug report. Just [comment our
-> latest release
-> thread](https://github.com/archriss/react-native-render-html/issues?q=is%3Aissue+is%3Aopen+label%3Arelease).
-> To install the `next` version: <pre>npm install react-native-render-html@next</pre>
->
-> If you wish, you can also try directly the master branch:
->
-> <pre>npm install "github:archriss/react-native-render-html#master"</pre>
+Then, you must install and link [react-native-webview](https://github.com/react-native-community/react-native-webview/blob/master/docs/Getting-Started.md) packet to you project
 
 ## Basic usage
 
 ```javascript
-import React, { Component } from "react";
-import { ScrollView, Dimensions } from "react-native";
-import HTML from "react-native-render-html";
+import React, { Component } from 'react';
+import { ScrollView, Dimensions } from 'react-native';
+import HTML from 'react-native-render-html';
 
 const htmlContent = `
     <h1>This HTML snippet is now rendered with native components !</h1>
@@ -117,53 +56,50 @@ const htmlContent = `
 `;
 
 export default class Demo extends Component {
-  render() {
-    return (
-      <ScrollView style={{ flex: 1 }}>
-        <HTML
-          html={htmlContent}
-          imagesMaxWidth={Dimensions.get("window").width}
-        />
-      </ScrollView>
-    );
-  }
+    render () {
+        return (
+            <ScrollView style={{ flex: 1 }}>
+                <HTML html={htmlContent} imagesMaxWidth={Dimensions.get('window').width} />
+            </ScrollView>
+        );
+    }
 }
 ```
 
 ## Props
 
-| Prop                      | Description                                                                                                                                                              | Type                          | Required/Default                                             |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- | ------------------------------------------------------------ |
-| `renderers`               | Your [custom renderers](#creating-custom-renderers)                                                                                                                      | `object`                      | Optional, some default ones are supplied (`<a>`, `<img>`...) |
-| `renderersProps`          | Set of props accessible into your [custom renderers](#creating-custom-renderers) in `passProps` (4th argument)                                                           | `object`                      | Optional                                                     |
-| `html`                    | HTML string to parse and render                                                                                                                                          | `string`                      | Required                                                     |
-| `uri`                     | _(experimental)_ remote website to parse and render                                                                                                                      | `string`                      | Optional                                                     |
-| `decodeEntities`          | Decode HTML entities of your content                                                                                                                                     | `bool`                        | Optional, defaults to `true`                                 |
-| `imagesMaxWidth`          | Resize your images to this maximum width, see [images](#images)                                                                                                          | `number`                      | Optional                                                     |
-| `staticContentMaxWidth`   | Set a maximum width to non-responsive content (`<iframe> for instance`)                                                                                                  | `number`                      | Optional                                                     |
-| `imagesInitialDimensions` | Default width and height to display while image's dimensions are being retrieved, see [images](#images)                                                                  | `{ width: 100, height: 100 }` | Optional                                                     |
-| `onLinkPress`             | Fired with the event, the href and an object with all attributes of the tag as its arguments when tapping a link                                                         | `function`                    | Optional                                                     |
-| `onParsed`                | Fired when your HTML content has been parsed. Also useful to tweak your rendering, see [onParsed](#onparsed)                                                             | `function`                    | Optional                                                     |
-| `tagsStyles`              | Provide your styles for specific HTML tags, see [styling](#styling)                                                                                                      | `object`                      | Optional                                                     |
-| `classesStyles`           | Provide your styles for specific HTML classes, see [styling](#styling)                                                                                                   | `object`                      | Optional                                                     |
-| `listsPrefixesRenderers`  | Your custom renderers from `ul` and `ol` bullets, see [lists prefixes](#lists-prefixes)                                                                                  | `object`                      | Optional                                                     |
-| `containerStyle`          | Custom style for the default container of the renderered HTML                                                                                                            | `object`                      | Optional                                                     |
-| `customWrapper`           | Replace the default wrapper with a function that takes your content as the first parameter                                                                               | `function`                    | Optional                                                     |
-| `remoteLoadingView`       | Replace the default loader while fetching a remote website's content                                                                                                     | `function`                    | Optional                                                     |
-| `remoteErrorView`         | Replace the default error if a remote website's content could not be fetched                                                                                             | `function`                    | Optional                                                     |
-| `emSize`                  | The default value in pixels for `1em`                                                                                                                                    | `number`                      | `14`                                                         |
-| `ptSize`                  | The default value in pixels for `1pt`                                                                                                                                    | `number`                      | `1.3`                                                        |
-| `baseFontStyle`           | The default style applied to `<Text>` components                                                                                                                         | `object`                      | `{ fontSize: 14 }`                                           |
-| `allowFontScaling`        | Specifies whether fonts should scale to respect Text Size accessibility settings                                                                                         | `boolean`                     | `true`                                                       |
-| `textSelectable`          | Allow all texts to be selected                                                                                                                                           | `boolean`                     | `false`                                                      |
-| `alterData`               | Target some specific texts and change their content, see [altering content](#altering-content)                                                                           | `function`                    | Optional                                                     |
-| `alterChildren`           | Target some specific nested children and change them, see [altering content](#altering-content)                                                                          | `function`                    | Optional                                                     |
-| `alterNode`               | Target a specific node and change it, see [altering content](#altering-content)                                                                                          | `function`                    | Optional                                                     |
-| `ignoredTags`             | HTML tags you don't want rendered, see [ignoring HTML content](#ignoring-html-content)                                                                                   | `array`                       | Optional, `['head', 'script', ...]`                          |
-| `allowedStyles`           | Allow render only certain CSS style properties and ignore every other. If you have some property both in `allowedStyles` and `ignoredStyles`, it will be ignored anyway. | `array`                       | Optional, everything is allowed by default                   |
-| `ignoredStyles`           | CSS styles from the `style` attribute you don't want rendered, see [ignoring HTML content](#ignoring-html-content)                                                       | `array`                       | Optional                                                     |
-| `ignoreNodesFunction`     | Return true in this custom function to ignore nodes very precisely, see [ignoring HTML content](#ignoring-html-content)                                                  | `function`                    | Optional                                                     |
-| `debug`                   | Prints the parsing result from htmlparser2 and render-html after the initial render                                                                                      | `bool`                        | Optional, defaults to `false`                                |
+Prop | Description | Type | Required/Default
+------ | ------ | ------ | ------
+`renderers` | Your [custom renderers](#creating-custom-renderers) | `object` | Optional, some default ones are supplied (`<a>`, `<img>`...)
+`renderersProps` | Set of props accessible into your [custom renderers](#creating-custom-renderers) in `passProps` (4th argument) | `object` | Optional
+`html` | HTML string to parse and render | `string` | Required
+`uri` | *(experimental)* remote website to parse and render | `string` | Optional
+`decodeEntities` | Decode HTML entities of your content | `bool` | Optional, defaults to `true`
+`imagesMaxWidth` | Resize your images to this maximum width, see [images](#images) | `number` | Optional
+`staticContentMaxWidth` | Set a maximum width to non-responsive content (`<iframe> for instance`) | `number` | Optional
+`imagesInitialDimensions` | Default width and height to display while image's dimensions are being retrieved, see [images](#images) | `{ width: 100, height: 100 }` | Optional
+`onLinkPress` | Fired with the event, the href and an object with all attributes of the tag as its arguments when tapping a link | `function` | Optional
+`onParsed` | Fired when your HTML content has been parsed. Also useful to tweak your rendering, see [onParsed](#onparsed) | `function` | Optional
+`tagsStyles` | Provide your styles for specific HTML tags, see [styling](#styling) | `object` | Optional
+`classesStyles` | Provide your styles for specific HTML classes, see [styling](#styling) | `object` | Optional
+`listsPrefixesRenderers` | Your custom renderers from `ul` and `ol` bullets, see [lists prefixes](#lists-prefixes) | `object` | Optional
+`containerStyle` | Custom style for the default container of the renderered HTML | `object` | Optional
+`customWrapper` | Replace the default wrapper with a function that takes your content as the first parameter | `function` | Optional
+`remoteLoadingView` | Replace the default loader while fetching a remote website's content | `function` | Optional
+`remoteErrorView` | Replace the default error if a remote website's content could not be fetched | `function` | Optional
+`emSize` | The default value in pixels for `1em` | `number` | `14`
+`ptSize` | The default value in pixels for `1pt` | `number` | `1.3`
+`baseFontStyle` | The default style applied to `<Text>` components | `object` | `{ fontSize: 14 }`
+`allowFontScaling` | Specifies whether fonts should scale to respect Text Size accessibility settings | `boolean` | `true`
+`textSelectable` | Allow all texts to be selected | `boolean` | `false`
+`alterData` | Target some specific texts and change their content, see [altering content](#altering-content) | `function` | Optional
+`alterChildren` | Target some specific nested children and change them, see [altering content](#altering-content) | `function` | Optional
+`alterNode` | Target a specific node and change it, see [altering content](#altering-content) | `function` | Optional
+`ignoredTags` | HTML tags you don't want rendered, see [ignoring HTML content](#ignoring-html-content) | `array` | Optional, `['head', 'scripts', ...]`
+`allowedStyles`| Allow render only certain CSS style properties and ignore every other. If you have some property both in `allowedStyles` and `ignoredStyles`, it will be ignored anyway. | `array` | Optional, everything is allowed by default
+`ignoredStyles` | CSS styles from the `style` attribute you don't want rendered, see [ignoring HTML content](#ignoring-html-content) | `array` | Optional
+`ignoreNodesFunction` | Return true in this custom function to ignore nodes very precisely, see [ignoring HTML content](#ignoring-html-content) | `function` | Optional
+`debug` | Prints the parsing result from htmlparser2 and render-html after the initial render | `bool` | Optional, defaults to `false`
 
 ## Demo
 
@@ -183,9 +119,7 @@ Just pass an object to the `renderers` prop with the tag name as the key, an a f
 
 ```javascript
 renderers: {
-  hr: () => (
-    <View style={{ width: "100%", height: 1, backgroundColor: "blue" }} />
-  );
+    hr: () => <View style={{ width: '100%', height: 1, backgroundColor: 'blue' }} />
 }
 ```
 
@@ -204,10 +138,10 @@ renderers: {
 
 Your renderers functions receive several arguments that will be very useful to make some very specific rendering.
 
-- `htmlAttribs`: attributes attached to the node, parsed in a react-native way
-- `children` : array with the children of the node
-- `convertedCSSStyles` : conversion of the `style` attribute from CSS to react-native's stylesheet
-- `passProps` : various useful information : your `renderersProps`, `groupInfo`, `parentTag`, `parentIsText`...
+* `htmlAttribs`: attributes attached to the node, parsed in a react-native way
+* `children` : array with the children of the node
+* `convertedCSSStyles` : conversion of the `style` attribute from CSS to react-native's stylesheet
+* `passProps` : various useful information :  your `renderersProps`, `groupInfo`, `parentTagName`, `parentIsText`...
 
 ### Making your custom component block or inline
 
@@ -233,8 +167,10 @@ Just like with the `renderers` prop, supply an object with `ul` and/or `ul` as f
 ```javascript
 // ... your props
 ul: (htmlAttribs, children, convertedCSSStyles, passProps) => {
-  return <Text style={{ color: "blue", fontSize: 16 }}>+</Text>;
-};
+    return (
+        <Text style={{ color: 'blue', fontSize: 16 }}>+</Text>
+    );
+}
 ```
 
 ## Styling
@@ -292,14 +228,14 @@ Here's how you would do that :
 ```javascript
 // ... your props
 alterData: (node) => {
-  let { parent, data } = node;
-  if (parent && parent.name === "h1") {
-    // Texts elements are always children of wrappers, this is why we check the tag
-    // with "parent.name" and not "name"
-    return data.toUpperCase();
-  }
-  // Don't return anything (eg a falsy value) for anything else than the <h1> tag so nothing is altered
-};
+    let { parent, data } = node;
+    if (parent && parent.name === 'h1') {
+        // Texts elements are always children of wrappers, this is why we check the tag
+        // with "parent.name" and not "name"
+        return data.toUpperCase();
+    }
+    // Don't return anything (eg a falsy value) for anything else than the <h1> tag so nothing is altered
+}
 ```
 
 ### alterChildren
@@ -311,13 +247,13 @@ Here's an example :
 ```javascript
 // ... your props
 alterChildren: (node) => {
-  const { children, name } = node;
-  if (name === "ol" && children && children.length) {
-    // Keep only the first two elements of the list
-    return children.splice(0, 2);
-  }
-  // Don't return anything (eg a falsy value) for anything else than the <ol> tag so nothing is altered
-};
+    const { children, name } = node;
+    if (name === 'ol' && children && children.length) {
+        // Keep only the first two elements of the list
+        return children.splice(0, 2);
+    }
+    // Don't return anything (eg a falsy value) for anything else than the <ol> tag so nothing is altered
+}
 ```
 
 ### alterNode
@@ -328,19 +264,16 @@ Here's an advanced example where you would change the color of links inside a `<
 
 ```javascript
 alterNode: (node) => {
-  const { name, parent } = node;
-  // If the tag is an <a> and we've found a parent to be a blockquote
-  // (see the utils part of this documentation to know more about getParentsTagsRecursively)
-  if (
-    name === "a" &&
-    getParentsTagsRecursively(parent).indexOf("blockquote") !== -1
-  ) {
-    // Let's assign a specific color to the node's attribs (if there already are)
-    node.attribs = { ...(node.attribs || {}), style: `color:lightblue;` };
-    return node;
-  }
-  // Don't return anything (eg a falsy value) for anything else so nothing is altered
-};
+    const { name, parent } = node;
+    // If the tag is an <a> and we've found a parent to be a blockquote
+    // (see the utils part of this documentation to know more about getParentsTagsRecursively)
+    if (name === 'a' && getParentsTagsRecursively(parent).indexOf('blockquote') !== -1) {
+        // Let's assign a specific color to the node's attribs (if there already are)
+        node.attribs = { ...(node.attribs || {}), style: `color:lightblue;` };
+        return node;
+    }
+    // Don't return anything (eg a falsy value) for anything else so nothing is altered
+}
 ```
 
 ### onParsed
@@ -351,30 +284,30 @@ If you want to tweak the parsed values, you can change `RNElements` and return i
 
 ```javascript
 onHTMLParsed = (dom, RNElements) => {
-  // Find the index of the first paragraph
-  const ad = {
-    wrapper: "View",
-    tagName: "mycustomblock",
-    attribs: {},
-    parent: false,
-    parentTag: false,
-    nodeIndex: 4,
-  };
-  // Insert the component
-  RNElements.splice(4, 0, ad);
-  return RNElements;
-};
+    // Find the index of the first paragraph
+    const ad = {
+        wrapper: 'View',
+        tagName: 'mycustomblock',
+        attribs: {},
+        parent: false,
+        parentTag: false,
+        nodeIndex: 4
+    };
+    // Insert the component
+    RNElements.splice(4, 0, ad);
+    return RNElements;
+}
 ```
 
 ## Ignoring HTML content
 
-You can't expect native components to be able to render _everything_ you can find in your browser. And you might not entirely trust your contributors, so here are 3 props allowing you to prevent disasters without sanitizing your HTML on the server-side (that doesn't mean you shouldn't !).
+You can't expect native components to be able to render *everything* you can find in your browser. And you might not entirely trust your contributors, so here are 3 props allowing you to prevent disasters without sanitizing your HTML on the server-side (that doesn't mean you shouldn't !).
 
-- `ignoredTags` : array of ignored HTML tags, by default `head` and `scripts` are removed
-- `ignoredStyles` : array of ignored CSS rules. Nothing is ignored by default
-- `ignoreNodesFunction` : this is a cumbersome, yet powerful, way of ignoring very specific stuff.
+* `ignoredTags` : array of ignored HTML tags, by default `head` and `scripts` are removed
+* `ignoredStyles` : array of ignored CSS rules. Nothing is ignored by default
+* `ignoreNodesFunction` : this is a cumbersome, yet powerful, way of ignoring very specific stuff.
 
-**Please note** that if you supply `ignoredTags`, you will override the default ignored ones. There are _a lot_ of them, if you want to keep them and add your own, you can do something like :
+**Please note** that if you supply `ignoredTags`, you will override the default ignored ones. There are *a lot* of them, if you want to keep them and add your own, you can do something like :
 
 ```javascript
 import { IGNORED_TAGS } from 'react-native-render-html/src/HTMLUtils';
@@ -394,19 +327,15 @@ The API is exposing some functions you can use to write advanced behaviors more 
 You can import them like so :
 
 ```javascript
-import { functionName } from "react-native-render-html/src/HTMLUtils";
+import { functionName } from 'react-native-render-html/src/HTMLUtils';
 ```
 
-- `getParentsTagsRecursively(node)`
-  - Description : Returns an array with the tagname of every parent of a node or an empty array if nothing is found.
-  - Parameters : - `node` : a parsed HTML node from `alterChildren` for example
-  - Returns : An empty array or an array of strings.
-  - Notes : this is very useful to check if a node is nested in a specific parent. See [alterNode](#alterNode) for an advanced example.
-- `getClosestNodeParentByTag(node, tag)`
-  - Description: Returns the closest parent of a node with a specific tag.
-  - Parameters : - `node` : a parsed HTML node from `alterChildren` for example
-  - Returns : An HTML node if found.
-
-## Help
-
-**If you're facing issues whit this library, [take a look at our dedicated document](HELP.adoc).**
+* `getParentsTagsRecursively(node)`
+    * Description : Returns an array with the tagname of every parent of a node or an empty array if nothing is found.
+    * Parameters : - `node` : a parsed HTML node from `alterChildren` for example
+    * Returns : An empty array or an array of strings.
+    * Notes : this is very useful to check if a node is nested in a specific parent. See [alterNode](#alterNode) for an advanced example.
+* `getClosestNodeParentByTag(node, tag)`
+    * Description: Returns the closest parent of a node with a specific tag.
+    * Parameters : - `node` : a parsed HTML node from `alterChildren` for example
+    * Returns : An HTML node if found.
