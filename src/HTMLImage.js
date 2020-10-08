@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Image, View, Text, Dimensions } from 'react-native';
+import { View, Text, Dimensions } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 
 export default class HTMLImage extends PureComponent {
@@ -106,7 +107,7 @@ export default class HTMLImage extends PureComponent {
     validImage (source, style, props = {}) {
 		if (source['uri'].indexOf('emoticons') !== -1) {
 			return (
-				<Image
+				<FastImage
 					source={source}
 					style={[style, { width: 50, height: 40, resizeMode: 'contain'}]}
 					{...props}
@@ -114,10 +115,10 @@ export default class HTMLImage extends PureComponent {
 			);
 		} else {
 			return (
-				<Image
+				<FastImage
 					source={source}
 					style={[style, {width: this.state.width, height: this.state.height, resizeMode: 'cover', alignSelf: 'center'}]}
-					{...props}
+                    {...props}
 				/>
 			);
 		}
@@ -130,9 +131,9 @@ export default class HTMLImage extends PureComponent {
 				<View style={{ width: 50, height: 50, borderWidth: 1, borderColor: 'lightgray', overflow: 'hidden', justifyContent: 'center' }}>
 					{ this.props.alt ? <Text style={{ textAlign: 'center', fontStyle: 'italic' }}>{ this.props.alt }</Text> : false }
 				</View> : 
-				<Image
+				<FastImage
 					style={{ width: '90%', height: 150, alignSelf: 'center'}}
-					source={require('../../../client/img/NoImage-placeholder.png')}
+                    source={require('../../../client/img/NoImage-placeholder.png')}
 				/>
         );
     }
