@@ -66,12 +66,12 @@ export function img (htmlAttribs, children, convertedCSSStyles, passProps = {}) 
 
     return (
         <HTMLImage
-          source={{ uri: htmlAttribs['data-src'] ? htmlAttribs['data-src'] : src }}
-          alt={alt}
-          width={width}
-          height={height}
-          style={style}
-          {...passProps}
+            source={{ uri: htmlAttribs['data-src'] ? htmlAttribs['data-src'] : src }}
+            alt={alt}
+            width={width}
+            height={height}
+            style={style}
+            {...passProps}
         />
     );
 }
@@ -121,7 +121,7 @@ export function ul (htmlAttribs, children, convertedCSSStyles, passProps = {}) {
 
         return (
             <View key={`list-${nodeIndex}-${index}-${key}`} style={{ flexDirection: 'row', marginBottom: 10 }}>
-                <View style={{ flex: 1, paddingLeft: 7, flexDirection: 'row', flexWrap: 'wrap' }}>{ prefix }{ child }</View>
+                <View style={{ flex: 1, paddingLeft: 14, flexDirection: 'row', flexWrap: 'wrap' }}>{ prefix }{ child }</View>
             </View>
         );
     });
@@ -179,7 +179,7 @@ export function br (htmlAttribs, children, convertedCSSStyles, passProps) {
     return (
         <Text
             allowFontScaling={passProps.allowFontScaling}
-            style={{ height: 1.2 * passProps.emSize, flex: 1 }}
+            style={{ height: 0.6 * passProps.emSize, flex: 1 }} // default heigth: 1.2
             key={passProps.key}
         >
             {"\n"}

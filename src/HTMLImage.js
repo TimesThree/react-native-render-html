@@ -1,14 +1,17 @@
 import React, { PureComponent } from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import { Image, View, Text } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
+
+import Prealoder from '../../../client/components/Preloader'
 
 export default class HTMLImage extends PureComponent {
     constructor (props) {
         super(props);
         this.state = {
             width: props.imagesInitialDimensions.width,
-            height: props.imagesInitialDimensions.height
+            height: props.imagesInitialDimensions.height,
+            loaded: false
         };
     }
 
@@ -27,8 +30,8 @@ export default class HTMLImage extends PureComponent {
 
     static defaultProps = {
         imagesInitialDimensions: {
-            width: 100,
-            height: 100
+            width: 230,
+            height: 230
         }
     }
 
@@ -42,7 +45,8 @@ export default class HTMLImage extends PureComponent {
     }
 
     componentDidUpdate(prevProps, prevState) {
-		this.getImageSize(this.props);
+        this.getImageSize(this.props);
+        this.state.isLoaded = true;
     }
 
     getDimensionsFromStyle (style, height, width) {
@@ -72,22 +76,23 @@ export default class HTMLImage extends PureComponent {
             if (!height && style['height']) {
                 styleHeight = style['height'];
             }
-		}
+        }
 
         return { styleWidth, styleHeight };
     }
 
     getImageSize (props = this.props) {
         const { source, imagesMaxWidth, style, height, width } = props;
-		const { styleWidth, styleHeight } = this.getDimensionsFromStyle(style, height, width);
-
+        const { styleWidth, styleHeight } = this.getDimensionsFromStyle(style, height, width);
+        
         if (styleWidth && styleHeight) {
+            
             return this.mounted && this.setState({
                 width: typeof styleWidth === 'string' && styleWidth.search('%') !== -1 ? styleWidth : parseInt(styleWidth, 10),
                 height: typeof styleHeight === 'string' && styleHeight.search('%') !== -1 ? styleHeight : parseInt(styleHeight, 10)
             });
         }
-		// Fetch image dimensions only if they aren't supplied or if with or height is missing
+        // Fetch image dimensions only if they aren't supplied or if with or height is missing
         Image.getSize(
             source.uri,
             (originalWidth, originalHeight) => {
@@ -105,29 +110,41 @@ export default class HTMLImage extends PureComponent {
     }
 
     validImage (source, style, props = {}) {
-		if (source['uri'].indexOf('emoticons') !== -1) {
+        if (source['uri'].indexOf('emoticons') !== -1) {
 			return (
-				<FastImage
-					source={source}
-					style={[style, { width: 50, height: 40, resizeMode: 'contain'}]}
-					{...props}
-				/>
+                <FastImage
+                    source={source}
+                    style={[style, { width: 50, height: 40}]}
+                    {...props}
+                    resizeMode={FastImage.resizeMode.contain}
+                />
 			);
 		} else {
-			return (
-				<FastImage
-					source={source}
-					style={[style, {width: this.state.width, height: this.state.height, resizeMode: 'cover', alignSelf: 'center'}]}
-                    {...props}
-				/>
-			);
+            return (
+                <View>
+                    <View style={!this.state.loaded && { width: 0, height: 0, opacity: 0 }}>
+                        <FastImage
+                            source={source}
+                            style={[ style, {width: this.state.width, height: this.state.height, alignSelf: 'center'} ]}
+                            {...props}
+                            resizeMode={FastImage.resizeMode.contain}
+                            onLoadStart={() => this.setState({ loaded: false })}
+                            onLoadEnd={() => this.setState({ loaded: true })}
+                        />
+                    </View>
+
+                    { !this.state.loaded && <View style={{height: this.state.height, backgroundColor: '#fff', justifyContent: 'center' }}>
+                        <Prealoder/>
+                    </View> }
+                </View>
+            );
 		}
     }
 
     get errorImage () {
-		// if it's emoji, print inside the border
+        // if it's emoji, print inside the border
         return (
-			this.props.source['uri'] && this.props['source']['uri'].indexOf('/emoticons/') && this.props['alt'] ? 
+			this.props.source['uri'] && this.props['source']['uri'].indexOf('/emoticons/') !== -1 && this.props['alt'] ? 
 				<View style={{ width: 50, height: 50, borderWidth: 1, borderColor: 'lightgray', overflow: 'hidden', justifyContent: 'center' }}>
 					{ this.props.alt ? <Text style={{ textAlign: 'center', fontStyle: 'italic' }}>{ this.props.alt }</Text> : false }
 				</View> : 
@@ -139,7 +156,7 @@ export default class HTMLImage extends PureComponent {
     }
 
     render () {
-		const { source, style, passProps } = this.props;
+        const { source, style, passProps } = this.props;
         return !(!!this.state.error) ? this.validImage(source, style, passProps) : this.errorImage;
     }
 }

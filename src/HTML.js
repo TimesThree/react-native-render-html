@@ -401,7 +401,7 @@ export default class HTML extends PureComponent {
 
         return RNElements && RNElements.length ? RNElements.map((element, index) => {
             const { attribs, data, tagName, parentTag, children, nodeIndex, wrapper } = element;
-			const Wrapper = wrapper === 'Text' ? Text : View;
+            const Wrapper = wrapper === 'Text' ? Text : View;
             const key = `${wrapper}-${parentIndex}-${nodeIndex}-${tagName}-${index}-${parentTag}`;
             const convertedCSSStyles =
                 attribs && attribs.style ?
@@ -474,8 +474,7 @@ export default class HTML extends PureComponent {
             if (Wrapper === Text) {
                 renderersProps.allowFontScaling = allowFontScaling;
                 renderersProps.selectable = textSelectable;
-			}
-			
+            }	
 
             return (
                 <Wrapper key={key} style={style} {...renderersProps}>
