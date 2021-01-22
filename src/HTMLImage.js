@@ -150,7 +150,7 @@ export default class HTMLImage extends PureComponent {
 				</View> : 
 				<FastImage
 					style={{ width: '90%', height: 150, alignSelf: 'center'}}
-                    source={require('../../../client/img/NoImage-placeholder.png')}
+                    source={require('../../../client/img/NoImage-placeholder.png'), {priority: 'high'}}
 				/>
         );
     }
